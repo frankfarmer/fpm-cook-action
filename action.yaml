@@ -11,4 +11,5 @@ runs:
   using: 'docker'
   image: 'docker/bionic/Dockerfile'
   args:
+    - echo
     - ${{ inputs.fpm-recipe }}
