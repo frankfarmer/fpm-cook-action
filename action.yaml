@@ -1,0 +1,14 @@
+name: 'docker'
+description: 'create docker build env'
+inputs:
+  fpm-recipe:
+    description: 'Which FPM recipe to build'
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'docker/bionic/Dockerfile'
+  args:
+    - ${{ inputs.fpm-recipe }}
