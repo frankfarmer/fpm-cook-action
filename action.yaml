@@ -11,5 +11,9 @@ runs:
   using: 'docker'
   image: 'docker/bionic/Dockerfile'
   args:
-    - echo
     - ${{ inputs.fpm-recipe }}
+
+  - name: Archive production artifact
+    uses: actions/upload-artifact@v2
+    with:
+      path: ${{ inputs.fpm-recipe }}.deb
