@@ -11,4 +11,5 @@ runs:
   using: 'docker'
   image: 'docker/bionic/Dockerfile'
   args:
+    - ./entrypoint.sh
     - ${{ inputs.fpm-recipe }}
