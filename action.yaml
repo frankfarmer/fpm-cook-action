@@ -8,12 +8,14 @@ outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
-  using: 'docker'
-  image: 'docker/bionic/Dockerfile'
-  args:
-    - ${{ inputs.fpm-recipe }}
-
-  - name: Archive production artifact
-    uses: actions/upload-artifact@v2
-    with:
-      path: ${{ inputs.fpm-recipe }}.deb
+  using: "composite"
+  steps:
+    - name: build ${{ inputs.fpm-recipe }}
+      using: 'docker'
+      image: 'docker/bionic/Dockerfile'
+      args:
+        - ${{ inputs.fpm-recipe }}
+    - name: Archive .deb
+      uses: actions/upload-artifact@v2
+      with:
+        path: '*.deb'
